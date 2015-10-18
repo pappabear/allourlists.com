@@ -2,11 +2,13 @@
 
 one:
   list_id: 1
+  id: 1
   name: "Item One"
   is_complete: false
 
 two:
   list_id: 1
+  id: 2
   name: "Item Two"
   is_complete: true
 
