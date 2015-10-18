@@ -20,9 +20,8 @@ ActiveRecord::Schema.define(version: 20151018142838) do
     t.integer  "list_id"
     t.string   "name"
     t.boolean  "is_complete"
-    t.date     "date_completed"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "lists", force: :cascade do |t|

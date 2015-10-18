@@ -4,7 +4,6 @@ class CreateItems < ActiveRecord::Migration
       t.integer :list_id
       t.string :name
       t.boolean :is_complete
-      t.date :date_completed
 
       t.timestamps null: false
     end

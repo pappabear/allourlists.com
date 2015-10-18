@@ -2,12 +2,11 @@
 
 one:
   list_id: 1
-  name: MyString
+  name: "Item One"
   is_complete: false
-  date_completed: 2015-10-18
 
 two:
   list_id: 1
-  name: MyString
-  is_complete: false
-  date_completed: 2015-10-18
+  name: "Item Two"
+  is_complete: true
+
