@@ -42,7 +42,7 @@ class ListsControllerTest < ActionController::TestCase
 
 
   test "should destroy a list" do
-    assert_difference('Todo.count', -1) do
+    assert_difference('List.count', -1) do
       delete :destroy, id: @list, format: :js
     end
   end
