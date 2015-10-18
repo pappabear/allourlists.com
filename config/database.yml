@@ -1,0 +1,13 @@
+development:
+  host: localhost
+  adapter: postgresql
+  database: allourlists_com
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+test:
+  host: localhost
+  adapter: postgresql
+  database: allourlists_com_TEST
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
