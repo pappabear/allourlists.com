@@ -5,6 +5,7 @@ class ListsController < ApplicationController
 
 
   def index
+    @list = List.new
     @lists = List.all
   end
 
@@ -15,24 +16,27 @@ class ListsController < ApplicationController
 
 
   def create
-    @list = List.new(list_params)
-    @list.save!
+    list = List.new(list_params)
+    list.save!
     @lists = List.all
+    @list = List.new
   end
 
 
   def update
-    @list = List.find(params[:id])
-    @list.update_attributes(list_params)
-    @list.save!
+    list = List.find(params[:id])
+    list.update_attributes(list_params)
+    list.save!
     @lists = List.all
+    @list = List.new
   end
 
 
   def destroy
-    @list = List.find(params[:id])
-    @list.destroy
+    list = List.find(params[:id])
+    list.destroy
     @lists = List.all
+    @list = List.new
   end
 
 

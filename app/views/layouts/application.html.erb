@@ -1,15 +1,268 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AllourlistsCom</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'rails' %>
-  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+  <title>MyDay</title>
+  <meta name="description" content="Flatter - Flat Admin Theme">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="image/touch/apple-touch-icon-144x144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="image/touch/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="image/touch/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="image/touch/apple-touch-icon-57x57-precomposed.png">
+  <link rel="shortcut icon" href="image/touch/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="lib/offlinejs/themes/offline-theme-dark.css">
+  <link rel="stylesheet" href="css/bootstrap-override.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="lib/weather-icons/css/weather-icons.min.css">
+  <link rel="stylesheet" href="lib/select2/select2-bootstrap.css">
+  <link rel="stylesheet" href="lib/select2/select2.css">
+  <link rel="stylesheet" href="lib/datepicker/css/datepicker.css">
+  <link rel="stylesheet" href="lib/icheck/skins/all.css">
+  <link rel="stylesheet" href="lib/alertify/alertify.core.css">
+  <link rel="stylesheet" href="lib/alertify/alertify.default.css">
+  <link rel="stylesheet" href="lib/messenger/css/messenger.css">
+  <link rel="stylesheet" href="lib/messenger/css/messenger-theme-future.css">
+  <link rel="stylesheet" href="lib/messenger/css/messenger-theme-flat.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/library.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="lib/jqueryui/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+  <%= csrf_meta_tag %>
+
 </head>
-<body>
+<body id="body">
 
-<%= yield %>
+<nav class="navbar navbar-default navbar-fixed-top navbar-alt" role="navigation" style='background-color: #3ba0ff;'>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/lists">All Our Lists</a>
+    </div>
 
+    <div class="collapse navbar-collapse navbar-right" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">Chip Irek
+
+            <img class="img-circle" src="http://s3.amazonaws.com/allourlists/users/avatars/000/000/001/thumb/headshot.jpg?1436656453" alt="Headshot" />
+
+            <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/users/edit"><i class="fa fa-gear"></i> Settings</a></li>
+            <li><a href="/users/sign_out" data-method="delete"><i class="fa fa-share"></i> Logout</a></li>
+            <li><a href="/feedback_emails/new"><i class="fa fa-bullhorn"></i> Feedback</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</nav>
+
+<div class="container">
+
+  <p style="padding-top: 3em;">&nbsp;</p>
+
+  <%= yield %>
+
+</div>
+
+
+<footer style="padding-top: 25px; padding-bottom: 25px; background-color: #3c3c3c">
+  <div class="subFooter">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="pull-left">
+            <span style="color:white">AllOurLists &copy; 2014-2015 </span> <a href="http://www.strategemalliance.com/" target="_blank">Strategem Alliance LLC </a> <span style="color:white"> | </span>
+            <a href="/home/terms">Terms</a> <span style="color:white"> | </span>
+                <a href="mailto:allourlists.strategem@gmail.com?subject=Request for support">Contact Us</a> <span style="color:white"> | </span>
+
+            <a href="/home/privacy">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/icheck/icheck.min.js"></script>
+<script type="text/javascript">
+
+    $('.flat-input-blue').iCheck({
+        checkboxClass: 'icheckbox_flat-blue',
+    });
+
+
+</script>
+
+
+<script type="text/javascript" src="lib/alertify/alertify.min.js"></script>
+<script type="text/javascript" src="lib/messenger/js/messenger.min.js"></script>
+<script type="text/javascript" src="lib/messenger/js/messenger-theme-future.js"></script>
+<script type="text/javascript" src="lib/messenger/js/messenger-theme-flat.js"></script>
+
+<script type="text/javascript" src="lib/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="lib/jquery-easing/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="lib/offlinejs/offline.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/rails.js"></script>
+<script type="text/javascript" src="lib/select2/select2.min.js"></script>
+<script type="text/javascript" src="lib/datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/validator.min.js"></script>
+
+
+<style>
+    .ui-state-highlight {
+        height: 1.5em;
+        line-height: 1.2em;
+    }
+</style>
+
+<script type="text/javascript">
+
+    function postComplete(pk) {
+        console.log("postComplete(): Putting an ajax update right now...");
+        $.ajax({
+            url: 'todos/mark_complete/' + pk,
+            type: 'POST',
+            data: {_method: 'PUT'},
+            success: function (msg) {
+                console.log("postComplete(): Ajax call to mark_complete successful.");
+                var i = parseInt($("#itemCount").text());
+                i -= 1;
+                $("#itemCount").text(i);
+                alertify.success("Todo was marked complete.");
+            },
+            error: function (msg) {
+                console.log("postIncomplete(): Ajax call to mark_complete FAILED.");
+                alertify.error("Server error reported...");
+            }
+
+        });
+    }
+
+
+    function postIncomplete(pk) {
+        console.log("postIncomplete(): Putting an ajax update right now...");
+        $.ajax({
+            url: 'todos/mark_incomplete/' + pk,
+            type: 'POST',
+            data: {_method: 'PUT'},
+            success: function (msg) {
+                console.log("postIncomplete(): Ajax call to mark_incomplete successful.");
+                var i = parseInt($("#itemCount").text());
+                i += 1;
+                $("#itemCount").text(i);
+                alertify.success("Todo was marked incomplete.");
+            },
+            error: function (msg) {
+                console.log("postIncomplete(): Ajax call to mark_incomplete FAILED.");
+                alertify.error("Server error reported...");
+            }
+
+        });
+    }
+
+    function setupPage() {
+        // reset the modal form fields
+        $('#new_todo #todo_subject').val('');
+
+
+        // remove any open modal
+        $('#modalAddForm').modal('hide');
+        $('.modalEditForms').modal('hide');
+        $('.modal-backdrop').hide();
+
+        // format the iCheck inputs
+        $('input:checkbox').iCheck(
+                {
+                    checkboxClass: 'icheckbox_flat-blue',
+                    increaseArea: '40%' // optional
+                });
+
+        $('input:checkbox').each(function () {
+            var $this = $(this);
+            if ($this.is(':checked')) {
+                $(this).iCheck('check');
+            }
+            else {
+                $(this).iCheck('uncheck');
+            }
+
+        });
+
+
+        // wire up the listeners
+        $('input:checkbox').on('ifChecked', function (event) {
+            console.log('ifChecked callback called. Calling postComplete(' + $(this).closest('li').attr("data-pk") + ')');
+            postComplete($(this).closest('li').attr("data-pk"));
+        });
+        $('input:checkbox').on('ifUnchecked', function (event) {
+            console.log('ifChecked callback called. Calling postIncomplete(' + $(this).closest('li').attr("data-pk") + ')');
+            postIncomplete($(this).closest('li').attr("data-pk"));
+        });
+
+
+        // make the new list sortable
+        $("#listGroup").sortable({
+            placeholder: "ui-state-highlight",
+            items: 'li',
+            update: function () {
+                console.log("Sending the sorted list via ajax to the server.");
+                console.log('Data=' + $('#listGroup').sortable('serialize'));
+                $.ajax({
+                    type: 'post',
+                    data: $('#listGroup').sortable('serialize'),
+                    dataType: 'script',
+                    complete: function (request) {
+                        console.log('Sort completed.');
+                    },
+                    url: '/todos/sort'
+                });
+            }
+        });
+        $("#listGroup").disableSelection();
+
+
+        // activate the UI controls
+        $("select").select2();
+        $('.due-date-picker-control').datepicker();
+        $('#new_todo').validator();
+
+
+        // add nice field validation
+        $('.form-horizontal').validator().on('submit', function (e) {
+            if (e.isDefaultPrevented()) {
+                // handle the invalid form...
+                console.log('Caught validation errors!');
+                return false;
+            } else {
+                // everything looks good!
+                console.log("Submitting form now...");
+                //$("#new_todo").submit();
+            }
+        });
+
+    }
+
+    $(document).ready(function () {
+
+        setupPage();
+
+    });
+</script>
 </body>
 </html>
