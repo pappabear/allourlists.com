@@ -3,8 +3,8 @@
   <% lists.each do |list| %>
 
       <li class="list-group-item">
-        <a href="/lists/1">
-          <h4 class="list-group-item-heading"><b><%= list.name %></b> <span class="badge pull-right">5</span></h4>
+        <a href="/lists/<%= list.id %>">
+          <h4 class="list-group-item-heading"><b><%= list.name %></b> <span class="badge badge-danger pull-right"><%= list.items.count %></span></h4>
           <h6 class="list-group-item-text">Created on 07/11/2015.</h6>
         </a>
       </li>
