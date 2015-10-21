@@ -1,0 +1,12 @@
+console.log("Entering create.js.erb...");
+
+
+// update the partial with the new item hash
+$("#listGroup").html("<%= escape_javascript(render :partial => 'lists', :locals => {:lists => @lists}) %>");
+
+
+setupPage();
+
+
+// create the flash message
+alertify.success("List was added.");

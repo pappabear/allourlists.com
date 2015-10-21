@@ -185,7 +185,7 @@
 
     function setupPage() {
         // reset the modal form fields
-        $('#new_todo #todo_subject').val('');
+        $('#new_list #list_name').val('');
 
 
         // remove any open modal
@@ -245,9 +245,7 @@
 
 
         // activate the UI controls
-        $("select").select2();
-        $('.due-date-picker-control').datepicker();
-        $('#new_todo').validator();
+        $('#new_list').validator();
 
 
         // add nice field validation

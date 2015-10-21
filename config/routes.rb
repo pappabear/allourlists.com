@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get '/lists/:list_id/items/mark_complete/:id' => 'items#mark_complete'
   get '/lists/:list_id/items/mark_incomplete/:id' => 'items#mark_incomplete'
 
+  root 'lists#index'
 
 end
