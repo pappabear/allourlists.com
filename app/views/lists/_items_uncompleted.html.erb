@@ -1,0 +1,15 @@
+<ul class="list-group" id="listGroup">
+
+  <% items.each do |item| %>
+
+      <li class="list-group-item" id="item_<%= item.id %>" data-pk="<%= item.id %>">
+        <input type="checkbox" class="flat-input-blue" <%= "checked".html_safe if item.is_complete? %>>
+        <label>
+          <a href="#" data-toggle="modal" data-target="#modalEditForm<%= item.id %>"><b><%= item.name %></b></a>
+        </label>
+      </li>
+
+  <% end %>
+
+</ul>
+

@@ -1,0 +1,27 @@
+<section>
+
+  <div class="row">
+
+    <h3><b><%= @list.name %></b>
+      <ul class="pull-right" style="list-style: none;">
+        <li><a href="#" data-toggle="modal" data-target="#modalAddForm">NEW</a></li>
+      </ul>
+    </h3>
+
+  </div>
+
+  <div class="row">
+
+    <div class="panel panel-default todo-list">
+      <div class="panel-body">
+
+        <%= render :partial => 'items_uncompleted', :locals => {:items => @list.items.where('is_complete is null')} %>
+        <p>&nbsp;</p>
+        <%= render :partial => 'items_completed', :locals => {:items => @list.items.where('is_complete is not null')} %>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
