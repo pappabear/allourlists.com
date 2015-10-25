@@ -267,6 +267,10 @@
 
         setupPage();
 
+        <% if flash[:notice] %>
+            alertify.success("<%= flash[:notice] %>");
+        <% end %>
+
     });
 </script>
 </body>

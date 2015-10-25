@@ -28,6 +28,7 @@ class ListsController < ApplicationController
     list.update_attributes(list_params)
     list.save!
     @lists = List.all
+    flash[:notice] = "List was updated."
     redirect_to list_path(list)
   end
 
@@ -37,6 +38,7 @@ class ListsController < ApplicationController
     list.destroy
     @lists = List.all
     @list = List.new
+    flash[:notice] = "List was deleted."
     redirect_to lists_path
   end
 
