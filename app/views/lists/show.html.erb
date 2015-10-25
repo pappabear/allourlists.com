@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <h3><b><%= @list.name %></b>
+    <h3><b><a href='#' data-toggle="modal" data-target="#modalEditListForm"><%= @list.name %></a></b>
       <ul class="pull-right" style="list-style: none;">
         <li><a href="#" data-toggle="modal" data-target="#modalAddForm">NEW</a></li>
       </ul>
@@ -25,3 +25,36 @@
 
 </section>
 
+<!-- EDIT LIST MODAL -------------------------->
+<div class="modal fade" id="modalEditListForm" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit This List</h4>
+      </div>
+      <div class="modal-body" style="margin-bottom:-30px;">
+
+        <%= form_for(@list, :authenticity_token => true, html: {class: 'form-horizontal'}) do |f| %>
+
+            <div class="form-group">
+              <label for="list_name" class="col-sm-2 control-label">Name</label>
+
+              <div class="col-sm-10">
+                <input type="text" class="form-control input-lg" id="list_name" name="list[name]" data-error="This can't be blank." required value="<%= @list.name %>">
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <a class="btn btn-danger" href='/lists/<%= @list.id.to_s %>' data-method='DELETE'>Delete</a>
+              <button type="submit" class="btn btn-primary" id="editListFormSubmitButton">Update</button>
+            </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- EDIT LIST MODAL -------------------------->

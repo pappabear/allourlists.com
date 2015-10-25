@@ -28,7 +28,7 @@ class ListsController < ApplicationController
     list.update_attributes(list_params)
     list.save!
     @lists = List.all
-    @list = List.new
+    redirect_to list_path(list)
   end
 
 
@@ -37,6 +37,7 @@ class ListsController < ApplicationController
     list.destroy
     @lists = List.all
     @list = List.new
+    redirect_to lists_path
   end
 
 
