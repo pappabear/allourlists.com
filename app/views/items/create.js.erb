@@ -1,0 +1,13 @@
+console.log("Entering items/create.js.erb...");
+
+
+// update the partial with the new item hash
+$("#listGroup").html("<%= escape_javascript(render :partial => 'lists/items_uncompleted', :locals => {:items => @list.items.where('is_complete is null')}) %>");
+$("#listGroupCompleted").html("<%= escape_javascript(render :partial => 'lists/items_completed', :locals => {:items => @list.items.where('is_complete is not null')}) %>");
+//
+
+setupPage();
+
+
+// create the flash message
+alertify.success("Item was added.");
