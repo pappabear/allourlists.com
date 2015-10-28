@@ -1,0 +1,13 @@
+console.log("Entering items/mark_incomplete.js.erb...");
+
+
+// update the partial with the new item hash
+$("#listGroup").html("<%= escape_javascript(render :partial => 'lists/items_uncompleted', :locals => {:items => @list.items.where('is_complete is null')}) %>");
+$("#listGroupCompleted").html("<%= escape_javascript(render :partial => 'lists/items_completed', :locals => {:items => @list.items.where('is_complete is not null')}) %>");
+$("#modalEditFormsDiv").html("<%= escape_javascript(render partial: 'lists/items_edit_modals', locals: {items: @list.items}) %>");
+
+setupPage();
+
+
+// create the flash message
+alertify.success("Item is undone.");
