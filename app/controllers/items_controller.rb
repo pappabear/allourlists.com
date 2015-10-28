@@ -16,7 +16,15 @@ class ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     item.update_attributes(item_params)
+
+    if !params[:item]['is_complete'].nil?
+      item.is_complete = true
+    else
+      item.is_complete = nil
+    end
+
     item.save!
+    @item = Item.new
     @list = List.find(params[:list_id])
   end
 

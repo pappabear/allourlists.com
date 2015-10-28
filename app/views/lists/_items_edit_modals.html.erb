@@ -1,0 +1,63 @@
+<!-- EDIT MODALs -------------------------->
+<div id="modalEditFormsDiv">
+  <% items.each do |item| %>
+      <div class="modal fade modalEditForms" id="modalEditForm<%= item.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Update an Item</h4>
+            </div>
+            <div class="modal-body" style="margin-bottom:-30px;">
+
+              <%= form_for([@list, item], remote: true, format: :js, :authenticity_token => true, html: {class: 'form-horizontal'}) do |f| %>
+
+                  <div class="form-group">
+                    <label for="item_name" class="col-sm-2 control-label">Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control input-lg" id="item_name" name="item[name]" placeholder="Enter a brief subject"
+                             data-error="This can't be blank." required value="<%= item.name %>">
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Complete?</label>
+                    <div class="col-sm-5">
+                      <input type="checkbox" name="item[is_complete]" id="item_is_complete" class="flat-input-blue" <%= "checked".html_safe if item.is_complete? %> >
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <a class="btn btn-danger" href='/lists/<%= @list.id %>/items/<%= item.id.to_s %>' data-method='DELETE' data-remote="true">Delete</a>
+                    <button type="submit" class="btn btn-primary" id="editItem<%= item.id %>FormSubmitButton">Update</button>
+                  </div>
+
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+<!-- FORMs for PUTs to mark-complete and mark-incomplete -------------------------->
+
+<% items.where('is_complete is null').each do |item| %>
+    <br/>
+    <form id="complete_<%= item.id %>" action="/lists/<%= @list.id %>/items/mark_complete/<%= item.id %>.js" accept-charset="UTF-8" data-remote="true" method="put">
+      <input name="utf8" type="hidden" value="&#x2713;" />
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+    </form>
+<% end %>
+
+<% items.where('is_complete is not null').each do |item| %>
+    <br/>
+    <form id="incomplete_<%= item.id %>" action="/lists/<%= @list.id %>/items/mark_incomplete/<%= item.id %>.js" accept-charset="UTF-8" data-remote="true" method="put">
+      <input name="utf8" type="hidden" value="&#x2713;" />
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+    </form>
+<% end %>

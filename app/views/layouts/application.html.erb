@@ -140,48 +140,27 @@
 
 <script type="text/javascript">
 
-    function postComplete(pk) {
-        console.log("postComplete(): Putting an ajax update right now...");
-        $.ajax({
-            url: 'todos/mark_complete/' + pk,
-            type: 'POST',
-            data: {_method: 'PUT'},
-            success: function (msg) {
-                console.log("postComplete(): Ajax call to mark_complete successful.");
-                var i = parseInt($("#itemCount").text());
-                i -= 1;
-                $("#itemCount").text(i);
-                alertify.success("Todo was marked complete.");
-            },
-            error: function (msg) {
-                console.log("postIncomplete(): Ajax call to mark_complete FAILED.");
-                alertify.error("Server error reported...");
-            }
+    function putAsComplete(pk) {
+        if (pk == null) {
+            console.log("Ignoring this checkbox click.");
+            return;
+        }
 
-        });
+        console.log("putAsComplete(): Putting a form right now...");
+        $('#complete_' + pk).submit();
     }
 
 
-    function postIncomplete(pk) {
-        console.log("postIncomplete(): Putting an ajax update right now...");
-        $.ajax({
-            url: 'todos/mark_incomplete/' + pk,
-            type: 'POST',
-            data: {_method: 'PUT'},
-            success: function (msg) {
-                console.log("postIncomplete(): Ajax call to mark_incomplete successful.");
-                var i = parseInt($("#itemCount").text());
-                i += 1;
-                $("#itemCount").text(i);
-                alertify.success("Todo was marked incomplete.");
-            },
-            error: function (msg) {
-                console.log("postIncomplete(): Ajax call to mark_incomplete FAILED.");
-                alertify.error("Server error reported...");
-            }
+    function putAsIncomplete(pk) {
+        if (pk == null) {
+            console.log("Ignoring this checkbox click.");
+            return;
+        }
 
-        });
+        console.log("putAsIncomplete(): Putting incomplete_" + pk + "...");
+        $('#incomplete_' + pk).submit();
     }
+
 
     function setupPage() {
         // reset the modal form fields
@@ -192,7 +171,7 @@
         $('#modalAddItemForm').modal('hide');
         $('#modalAddListForm').modal('hide');
         $('#modalEditListForm').modal('hide');
-        //$('.modalEditForms').modal('hide');
+        $('.modalEditForms').modal('hide');
         $('.modal-backdrop').hide();
 
         // format the iCheck inputs
@@ -216,12 +195,12 @@
 
         // wire up the listeners
         $('input:checkbox').on('ifChecked', function (event) {
-            console.log('ifChecked callback called. Calling postComplete(' + $(this).closest('li').attr("data-pk") + ')');
-            postComplete($(this).closest('li').attr("data-pk"));
+            console.log('ifChecked callback called. Calling putAsComplete(' + $(this).closest('li').attr("data-pk") + ')');
+            putAsComplete($(this).closest('li').attr("data-pk"));
         });
         $('input:checkbox').on('ifUnchecked', function (event) {
-            console.log('ifChecked callback called. Calling postIncomplete(' + $(this).closest('li').attr("data-pk") + ')');
-            postIncomplete($(this).closest('li').attr("data-pk"));
+            console.log('ifChecked callback called. Calling putAsIncomplete(' + $(this).closest('li').attr("data-pk") + ')');
+            putAsIncomplete($(this).closest('li').attr("data-pk"));
         });
 
 
