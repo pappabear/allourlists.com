@@ -204,26 +204,27 @@
         });
 
 
-        // make the new list sortable
-        $("#listGroup").sortable({
-            placeholder: "ui-state-highlight",
-            items: 'li',
-            update: function () {
-                console.log("Sending the sorted list via ajax to the server.");
-                console.log('Data=' + $('#listGroup').sortable('serialize'));
-                $.ajax({
-                    type: 'post',
-                    data: $('#listGroup').sortable('serialize'),
-                    dataType: 'script',
-                    complete: function (request) {
-                        console.log('Sort completed.');
-                    },
-                    url: '/todos/sort'
-                });
-            }
-        });
-        $("#listGroup").disableSelection();
-
+        <% if !@list.id.nil? %>
+            // make the new list sortable
+            $("#listGroup").sortable({
+                placeholder: "ui-state-highlight",
+                items: 'li',
+                update: function () {
+                    console.log("Sending the sorted list via ajax to the server.");
+                    console.log('Data=' + $('#listGroup').sortable('serialize'));
+                    $.ajax({
+                        type: 'post',
+                        data: $('#listGroup').sortable('serialize'),
+                        dataType: 'script',
+                        complete: function (request) {
+                            console.log('Sort completed.');
+                        },
+                        url: '/lists/<%= @list.id %>/items/sort'
+                    });
+                }
+            });
+            $("#listGroup").disableSelection();
+        <% end %>
 
         // activate the UI controls
         $('#new_list').validator();

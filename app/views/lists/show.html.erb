@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <h3><b><a href='#' data-toggle="modal" data-target="#modalEditListForm"><%= @list.name %></a></b>
+    <h3><b><a href='#' data-toggle="modal" data-target="#modalEditListForm" style="color: #7d8282;"><%= @list.name %></a></b>
       <ul class="pull-right" style="list-style: none;">
         <li><a href="#" data-toggle="modal" data-target="#modalAddItemForm">NEW ITEM</a></li>
       </ul>
@@ -15,9 +15,9 @@
     <div class="panel panel-default todo-list">
       <div class="panel-body">
 
-        <%= render :partial => 'items_uncompleted', :locals => {:items => @list.items.where('is_complete is null')} %>
+        <%= render :partial => 'items_uncompleted', :locals => {:items => @list.items.where('is_complete is null').order('position')} %>
         <p>&nbsp;</p>
-        <%= render :partial => 'items_completed', :locals => {:items => @list.items.where('is_complete is not null')} %>
+        <%= render :partial => 'items_completed', :locals => {:items => @list.items.where('is_complete is not null').order('position')} %>
 
       </div>
     </div>

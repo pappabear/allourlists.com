@@ -54,9 +54,9 @@ class ItemsController < ApplicationController
 
   def sort
     # puts 'sort params=' + params['item'].to_s
-    @todos = Todo.where('id in (?)', params['item'])
+    items = Item.where('id in (?)', params['item'])
 
-    @todos.each do |w|
+    items.each do |w|
       w.position = params['item'].index(w.id.to_s) + 1
       w.save!
     end
