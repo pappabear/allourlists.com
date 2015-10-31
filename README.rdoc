@@ -13,3 +13,15 @@ Some marketing stuff needs to go here:
 * ...
 
 
+To get it running locally:
+
+* clone the repo
+
+* rake db:create db:migrate db:seed
+
+* rails s
+
+* Browse to 127.0.0.1:3000
+
+
+
