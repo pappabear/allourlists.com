@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users
+  #devise_for :users
+  devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'devise/sessions'}
+  delete "/users/sign_out", :to => 'devise/sessions#destroy'
+
 
   resources :lists do
     resources :items

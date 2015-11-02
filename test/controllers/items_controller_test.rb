@@ -4,6 +4,9 @@ class ItemsControllerTest < ActionController::TestCase
 
 
   setup do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @user = users(:me)
+    sign_in @user
     @item = items(:one)
   end
 
@@ -28,14 +31,14 @@ class ItemsControllerTest < ActionController::TestCase
 
 
   test "should mark an item complete" do
-    put :mark_complete, id: @item, list_id:@item.list_id, item: { is_complete: true }
+    put :mark_complete, id: @item, list_id:@item.list_id, format: :js, item: { is_complete: true }
     test = Item.find(@item.id)
     assert_equal true, test.is_complete?
   end
 
 
   test "should mark an item incomplete" do
-    put :mark_incomplete, id: @item, list_id:@item.list_id, item: { is_complete: false }
+    put :mark_incomplete, id: @item, list_id:@item.list_id, format: :js, item: { is_complete: false }
     test = Item.find(@item.id)
     assert_equal false, test.is_complete?
   end

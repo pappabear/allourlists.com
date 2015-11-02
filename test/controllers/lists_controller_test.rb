@@ -5,6 +5,9 @@ class ListsControllerTest < ActionController::TestCase
 
 
   setup do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @user = users(:me)
+    sign_in @user
     @list = lists(:one)
   end
 

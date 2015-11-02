@@ -8,6 +8,7 @@ gem 'jquery-rails'# , '>=2.2.1'
 gem 'turbolinks',   '2.3.0'
 gem 'jbuilder',     '2.2.3'
 gem 'sdoc',         '0.4.0', group: :doc
+gem 'mail_form', '>= 1.3.0'
 
 group :development do
   gem 'taps'

@@ -3,7 +3,9 @@
 one:
   id: 1
   name: "List One"
+  user_id: 1
 
 two:
   id: 2
   name: "List Two"
+  user_id: 2
