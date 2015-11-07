@@ -78,13 +78,23 @@
 
 </nav>
 
-<div class="container">
+<% if current_user %>
 
-  <p style="padding-top: 3em;">&nbsp;</p>
+        <div class="container">
 
-  <%= yield %>
+          <p style="padding-top: 3em;">&nbsp;</p>
 
-</div>
+          <%= yield %>
+
+        </div>
+
+<% else %>
+
+      <p style="padding-top: 3em;">&nbsp;</p>
+
+      <%= yield %>
+
+<% end %>
 
 
 <footer style="padding-top: 25px; padding-bottom: 25px; background-color: #3c3c3c">
@@ -208,6 +218,7 @@
 
         <% if current_user %>
 
+            <% if @list %>
             <% if !@list.id.nil? %>
             // make the new list sortable
             $("#listGroup").sortable({
@@ -229,6 +240,7 @@
             });
             $("#listGroup").disableSelection();
             <% end %>
+        <% end %>
 
         <% end %>
 

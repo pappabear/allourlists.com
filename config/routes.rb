@@ -17,6 +17,17 @@ Rails.application.routes.draw do
   get '/lists/:list_id/items/mark_incomplete/:id' => 'items#mark_incomplete'
   post '/lists/:list_id/items/sort' => 'todos#sort'
 
-  root 'lists#index'
+  get 'home/index'
+  get 'home/privacy'
+  get 'home/terms'
+
+  unauthenticated do
+    root to: 'home#index', as: :unauthenticated_root
+  end
+
+  authenticated :user do
+    root to: 'lists#index', as: :authenticated_root
+  end
+
 
 end
