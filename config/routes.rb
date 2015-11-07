@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/lists/:list_id/items/mark_complete/:id' => 'items#mark_complete'
   get '/lists/:list_id/items/mark_incomplete/:id' => 'items#mark_incomplete'
   post '/lists/:list_id/items/sort' => 'todos#sort'
+  get '/feedback_emails/' => 'feedback_emails#new'
+  resources 'feedback_emails', only: [:new, :create]
 
   get 'home/index'
   get 'home/privacy'

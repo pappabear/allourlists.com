@@ -1,0 +1,53 @@
+<%= form_for(@feedback_email, :html => {:class => 'form-horizontal', :id => 'new_feedback_form'}) do |f| %>
+
+    <% if @feedback_email.errors.any? %>
+
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+
+          <h4>Ooops. <%= pluralize(@feedback_email.errors.count, "error") %> prohibited this message from being sent:</h4>
+
+          <ul>
+            <% @feedback_email.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <h3>Send us feedback, please!</h3>
+    <p>&nbsp;</p>
+
+    <fieldset>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" id="message_name" name="message[name]" value="<%= @feedback_email.name %>" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" id="message_name" name="message[email]" value="<%= @feedback_email.email %>" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="inputEmail3">Message</label>
+
+        <div class="col-sm-10">
+          <textarea name="message[message]" cols="50" rows="10" id="message_message"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </div>
+      </div>
+
+    </fieldset>
+
+<% end %>
