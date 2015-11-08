@@ -9,6 +9,9 @@ gem 'turbolinks',   '2.3.0'
 gem 'jbuilder',     '2.2.3'
 gem 'sdoc',         '0.4.0', group: :doc
 gem 'mail_form', '>= 1.3.0'
+gem 'simple_form'
+gem 'paperclip'
+gem 'aws-sdk-v1'
 
 group :development do
   gem 'taps'

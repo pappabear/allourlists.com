@@ -4,9 +4,9 @@ class RegistrationsController < Devise::RegistrationsController
   protected
 
 
-  #def after_update_path_for(user)
-  #  edit_user_registration_path
-  #end
+  def after_update_path_for(user)
+    edit_user_registration_path
+  end
 
 
   def after_sign_in_path_for(user)
@@ -29,8 +29,7 @@ class RegistrationsController < Devise::RegistrationsController
     l.save!
     l.items.create(:name=>'Your first todo!')
 
-    #authenticated_root_path
-    root_path
+    authenticated_root_path
 
   end
 

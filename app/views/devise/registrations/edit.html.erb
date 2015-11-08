@@ -1,39 +1,136 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h3>Update My Profile</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => 'form-horizontal', :id=>'profileEdit' }) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+    <%= devise_error_messages! %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <ul class="nav nav-tabs padding-16">
+      <li class="active">
+        <a data-toggle="tab" href="#edit-basic">
+          <i class="green icon-edit bigger-125"></i>
+          General
+        </a>
+      </li>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <li>
+        <a data-toggle="tab" href="#edit-settings">
+          <i class="purple icon-cog bigger-125"></i>
+          Settings
+        </a>
+      </li>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+      <li>
+        <a data-toggle="tab" href="#edit-password">
+          <i class="blue icon-key bigger-125"></i>
+          Password Change
+        </a>
+      </li>
+    </ul>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+    <div class="tab-content profile-edit-tab-content">
+      <div id="edit-basic" class="tab-pane in active">
+        <div class="field">
+          <%= image_tag current_user.avatar.url(:square) %>
+        </div>
+
+        <div class="field">
+          <%= f.label :avatar %><br />
+          <%= f.file_field :avatar, :class => 'form-control' %>
+        </div>
+        <br />
+
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: true, :class => 'form-control input-lg' %>
+        </div>
+        <br />
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: false, :class => 'form-control input-lg' %>
+        </div>
+        <br />
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+      </div>
+
+      <div id="edit-settings" class="tab-pane">
+        No settings right now.
+      </div>
+
+      <div id="edit-password" class="tab-pane">
+        <div class="field">
+          <%= f.label 'New Password' %> <i style="color:lightgray">(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "off", :class => 'form-control input-lg' %>
+        </div>
+        <br />
+
+        <div class="field">
+          <%= f.label 'New password confirmation' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control input-lg' %>
+        </div>
+        <br />
+      </div>
+    </div>
+
+
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <div class="field">
+      <%= f.label :current_password %> <i style="color:lightgray">(we need your CURRENT password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control input-lg' %>
+    </div>
+    <br />
+
+    <div class="actions">
+      <%= f.submit "Update", :class=>"btn btn-success" %>
+    </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3 style="margin-top: 2em;">Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class=>"btn btn-large btn-danger" %></p>
 
 <%= link_to "Back", :back %>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var $profileEdit = $("#profileEdit").validate({
+
+            // Rules for form validation
+            rules: {
+                'user[current_password]': {
+                    required: true,
+                    minlength: 3
+                }
+            },
+
+            // Messages for form validation
+            messages: {
+                'user[current_password]': {
+                    required: 'Please enter your CURRENT password so we can validate this request'
+                }
+            },
+
+            highlight: function(element, errorClass) {
+                $(element).css('border', '1px solid red');
+            },
+
+            // Do not change code below
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);//.parent());
+            }
+        });
+
+    })
+
+</script>
