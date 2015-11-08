@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/library.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/footer-demo.css">
+  <link rel="stylesheet" href="/css/footer-basic-centered.css">
   <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="/lib/jqueryui/js/jquery-ui-1.10.4.custom.min.js"></script>
 
@@ -90,29 +92,28 @@
 
 <% else %>
 
-      <p style="padding-top: 3em;">&nbsp;</p>
+      <p style="padding-top: 1em;">&nbsp;</p>
 
       <%= yield %>
 
 <% end %>
 
+<p>&nbsp;</p>
 
-<footer style="padding-top: 25px; padding-bottom: 25px; background-color: #3c3c3c">
-  <div class="subFooter">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="pull-left">
-            <span style="color:white">AllOurLists &copy; 2014-2015 </span> <span style="color:white"> | </span>
-            <a href="/home/terms">Terms</a> <span style="color:white"> | </span>
-                <a href="mailto:allourlists.strategem@gmail.com?subject=Request for support">Contact Us</a> <span style="color:white"> | </span>
+<footer class="footer-basic-centered">
 
-            <a href="/home/privacy">Privacy Policy</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <p class="footer-company-motto">Let's keep track of All Our Lists.</p>
+
+  <p class="footer-links">
+    <a href="/home/terms">Terms</a>
+    ·
+    <a href="/home/privacy">Privacy Policy</a>
+    ·
+    <a href="mailto:allourlists.strategem@gmail.com?subject=Request for support">Contact Us</a>
+  </p>
+
+  <p class="footer-company-name">Strategem Alliance &copy; 2015</p>
+
 </footer>
 
 
