@@ -178,9 +178,6 @@
 
 
     function setupPage() {
-        // reset the modal form fields
-        $('#new_list #list_name').val('');
-
 
         // remove any open modal
         $('#modalAddItemForm').modal('hide');
@@ -248,10 +245,6 @@
         <% end %>
 
 
-        // activate the UI controls
-        $('#new_list').validator();
-
-
         // add nice field validation
         $('.form-horizontal').validator().on('submit', function (e) {
             if (e.isDefaultPrevented()) {
@@ -261,7 +254,6 @@
             } else {
                 // everything looks good!
                 console.log("Submitting form now...");
-                //$("#new_todo").submit();
             }
         });
 

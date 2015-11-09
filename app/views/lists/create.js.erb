@@ -8,5 +8,13 @@ $("#listGroup").html("<%= escape_javascript(render :partial => 'lists', :locals 
 setupPage();
 
 
+// reset the modal form fields
+$('#list_name').val('');
+
+
+// activate the UI controls
+$('#new_list').validator();
+
+
 // create the flash message
 alertify.success("List was added.");

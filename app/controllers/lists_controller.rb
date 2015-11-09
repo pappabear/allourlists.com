@@ -20,7 +20,7 @@ class ListsController < ApplicationController
     list = List.new(list_params)
     list.user_id = current_user.id
     list.save!
-    @lists = List.all
+    @lists = List.where("user_id=?", current_user.id)
     @list = List.new
   end
 
@@ -29,7 +29,7 @@ class ListsController < ApplicationController
     list = List.find(params[:id])
     list.update_attributes(list_params)
     list.save!
-    @lists = List.all
+    @lists = List.where("user_id=?", current_user.id)
     flash[:notice] = "List was updated."
     redirect_to list_path(list)
   end
@@ -38,7 +38,7 @@ class ListsController < ApplicationController
   def destroy
     list = List.find(params[:id])
     list.destroy
-    @lists = List.all
+    @lists = List.where("user_id=?", current_user.id)
     @list = List.new
     flash[:notice] = "List was deleted."
     redirect_to lists_path
