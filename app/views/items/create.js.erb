@@ -6,7 +6,17 @@ $("#listGroup").html("<%= escape_javascript(render :partial => 'lists/items_unco
 $("#listGroupCompleted").html("<%= escape_javascript(render :partial => 'lists/items_completed', :locals => {:items => @list.items.where('is_complete is not null')}) %>");
 $("#modalEditFormsDiv").html("<%= escape_javascript(render partial: 'lists/items_edit_modals', locals: {items: @list.items}) %>");
 
+
 setupPage();
+
+
+// reset the modal form fields
+console.log('Setting new item name in modal to blank');
+$('#new_item #item_name').val('');
+
+
+// activate the UI controls
+$('#new_item').validator();
 
 
 // create the flash message
