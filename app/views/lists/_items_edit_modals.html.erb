@@ -12,6 +12,8 @@
 
               <%= form_for([@list, item], remote: true, format: :js, :authenticity_token => true, html: {class: 'form-horizontal'}) do |f| %>
 
+                  <input type="hidden" id="originalItem<%= item.id %>Name" value="<%= item.name %>" />
+
                   <div class="form-group">
                     <label for="item_name" class="col-sm-2 control-label">Name</label>
 
@@ -42,6 +44,29 @@
       </div>
   <% end %>
 </div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        <% items.each do |item| %>
+
+        $("#modalEditForm<%= item.id %>").on("hidden.bs.modal", function () {
+            // put your default event here
+            //console.log("modalEditListForm is closing!");
+            if ($('#modalEditForm<%= item.id %> #item_name').val() == '')
+            {
+                //console.log("While closing the item edit modal, list name set to blank. Replacing with original value.");
+                $('#modalEditForm<%= item.id %> #item_name').val($('#originalItem<%= item.id %>Name').val());
+            }
+
+        });
+
+        <% end %>
+    });
+
+</script>
 
 
 <!-- FORMs for PUTs to mark-complete and mark-incomplete -------------------------->
