@@ -30,13 +30,14 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/footer-demo.css">
   <link rel="stylesheet" href="/css/footer-basic-centered.css">
+  <link rel="stylesheet" href="/lib/dropzone/css/dropzone.css">
   <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="/lib/jqueryui/js/jquery-ui-1.10.4.custom.min.js"></script>
 
   <style>
-    a:hover {
-        text-decoration:none;
-    }
+      a:hover {
+          text-decoration: none;
+      }
   </style>
 
 
@@ -82,19 +83,19 @@
 
 <% if current_user %>
 
-        <div class="container">
+    <div class="container">
 
-          <p style="padding-top: 3em;">&nbsp;</p>
+      <p style="padding-top: 3em;">&nbsp;</p>
 
-          <%= yield %>
+      <%= yield %>
 
-        </div>
+    </div>
 
 <% else %>
 
-      <p style="padding-top: 1em;">&nbsp;</p>
+    <p style="padding-top: 1em;">&nbsp;</p>
 
-      <%= yield %>
+    <%= yield %>
 
 <% end %>
 
@@ -142,6 +143,7 @@
 <script type="text/javascript" src="/lib/select2/select2.min.js"></script>
 <script type="text/javascript" src="/lib/datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="/js/validator.min.js"></script>
+<script type="text/javascript" src="/lib/dropzone/dropzone.min.js"></script>
 
 
 <style>
@@ -220,28 +222,28 @@
         <% if current_user %>
 
             <% if @list %>
-            <% if !@list.id.nil? %>
-            // make the new list sortable
-            $("#listGroup").sortable({
-                placeholder: "ui-state-highlight",
-                items: 'li',
-                update: function () {
-                    console.log("Sending the sorted list via ajax to the server.");
-                    console.log('Data=' + $('#listGroup').sortable('serialize'));
-                    $.ajax({
-                        type: 'post',
-                        data: $('#listGroup').sortable('serialize'),
-                        dataType: 'script',
-                        complete: function (request) {
-                            console.log('Sort completed.');
-                        },
-                        url: '/lists/<%= @list.id %>/items/sort'
+                <% if !@list.id.nil? %>
+                    // make the new list sortable
+                    $("#listGroup").sortable({
+                        placeholder: "ui-state-highlight",
+                        items: 'li',
+                        update: function () {
+                            console.log("Sending the sorted list via ajax to the server.");
+                            console.log('Data=' + $('#listGroup').sortable('serialize'));
+                            $.ajax({
+                                type: 'post',
+                                data: $('#listGroup').sortable('serialize'),
+                                dataType: 'script',
+                                complete: function (request) {
+                                    console.log('Sort completed.');
+                                },
+                                url: '/lists/<%= @list.id %>/items/sort'
+                            });
+                        }
                     });
-                }
-            });
-            $("#listGroup").disableSelection();
+                    $("#listGroup").disableSelection();
+                <% end %>
             <% end %>
-        <% end %>
 
         <% end %>
 
