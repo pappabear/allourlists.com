@@ -99,3 +99,44 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class=>"btn btn-large btn-danger" %></p>
 
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#profileEdit").validate({
+            rules: {
+                'user[name]': {
+                    required: true,
+                    minlength: 3
+                },
+                'user[email]': {
+                    required: true,
+                    minlength: 8,
+                    email: true
+                },
+                'user[current_password]': {
+                    required: true,
+                    minlength: 8
+                }
+            },
+
+            // Messages for form validation
+            messages: {
+                'user[name]': {
+                    required: 'Please make sure your name is filled in.'
+                },
+                'user[email]': {
+                    required: 'Please make sure your email is filled in.',
+                    email: 'Please make sure your email is VALID.'
+                },
+                'user[current_password]': {
+                    required: 'Please enter your current password so we can validate your request.',
+                    minlength: 'Password is too short.'
+                }
+            }
+        });
+
+    });
+
+</script>
+
