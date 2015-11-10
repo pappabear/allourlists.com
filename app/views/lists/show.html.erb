@@ -104,7 +104,7 @@
               <label for="item_name" class="col-sm-2 control-label">Name</label>
 
               <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" id="item_name" name="item[name]" data-error="This can't be blank." required value="<%= @item.name %>">
+                <input type="text" class="form-control input-lg" id="item_name" name="item[name]" data-error="This can't be blank." value="<%= @item.name %>">
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -120,3 +120,28 @@
   </div>
 </div>
 <!-- ADD ITEM MODAL -------------------------->
+
+
+<!-- add validation for the NEW ITEM modal -->
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //console.log('Adding discrete validation in lists/show...');
+        $("#new_item").validate({
+            rules: {
+                'item[name]': {
+                    required: true,
+                    minlength: 5
+                }
+            }, messages: {
+                'item[name]': {
+                    required: "This field is required !!",
+                    minlength: "{0} characters needed !!"
+                }
+            }
+        });
+
+    });
+
+</script>

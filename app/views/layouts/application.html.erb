@@ -142,7 +142,7 @@
 <script type="text/javascript" src="/js/rails.js"></script>
 <script type="text/javascript" src="/lib/select2/select2.min.js"></script>
 <script type="text/javascript" src="/lib/datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="/js/validator.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/lib/dropzone/dropzone.min.js"></script>
 
 
@@ -243,19 +243,6 @@
             <% end %>
 
         <% end %>
-
-
-        // add nice field validation
-        $('.form-horizontal').validator().on('submit', function (e) {
-            if (e.isDefaultPrevented()) {
-                // handle the invalid form...
-                console.log('Caught validation errors!');
-                return false;
-            } else {
-                // everything looks good!
-                console.log("Submitting form now...");
-            }
-        });
 
     }
 

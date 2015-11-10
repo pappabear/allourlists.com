@@ -10,13 +10,38 @@ $("#modalEditFormsDiv").html("<%= escape_javascript(render partial: 'lists/items
 setupPage();
 
 
-// reset the modal form fields
-console.log('Setting new item name in modal to blank');
+
+//$('#new_item #item_name').val('');
+// faking out jQuery validate... just for a moment...
+$("#new_item").validate({
+    rules: {
+        'item[name]': {
+            required: false
+        }
+    }, messages: {
+        'item[name]': {
+            required: "I am a fake!!"
+        }
+    }
+});
+
+// ...reset the modal form fields...
 $('#new_item #item_name').val('');
 
-
-// activate the UI controls
-$('#new_item').validator();
+// ...adding discrete validation in items/create
+$("#new_item").validate({
+    rules: {
+        'item[name]': {
+            required: true,
+            minlength: 5
+        }
+    }, messages: {
+        'item[name]': {
+            required: "This field is required !!",
+            minlength: "{0} characters needed !!"
+        }
+    }
+});
 
 
 // create the flash message

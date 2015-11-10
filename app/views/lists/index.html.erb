@@ -40,7 +40,7 @@
               <label for="list_name" class="col-sm-2 control-label">Name</label>
 
               <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" id="list_name" name="list[name]" placeholder="Enter a name for this list" data-error="This can't be blank." required>
+                <input type="text" class="form-control input-lg" id="list_name" name="list[name]" placeholder="Enter a name for this list" data-error="This can't be blank." >
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -56,3 +56,27 @@
   </div>
 </div>
 <!-- ADD / NEW MODAL -------------------------->
+
+<!-- add validation for the NEW LIST modal -->
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //console.log('Adding discrete validation in lists/index...');
+        $("#new_list").validate({
+            rules: {
+                'list[name]': {
+                    required: true,
+                    minlength: 5
+                }
+            }, messages: {
+                'list[name]': {
+                    required: "This field is required !!",
+                    minlength: "{0} characters needed !!"
+                }
+            }
+        });
+
+    });
+
+</script>

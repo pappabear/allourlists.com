@@ -8,12 +8,36 @@ $("#listGroup").html("<%= escape_javascript(render :partial => 'lists', :locals 
 setupPage();
 
 
-// reset the modal form fields
+// faking out jQuery validate... just for a moment...
+$("#new_list").validate({
+    rules: {
+        'list[name]': {
+            required: false
+        }
+    }, messages: {
+        'list[name]': {
+            required: "I am a fake!!"
+        }
+    }
+});
+
+// ...reset the modal form fields...
 $('#list_name').val('');
 
-
-// activate the UI controls
-$('#new_list').validator();
+// ...adding discrete validation in lists/create
+$("#new_list").validate({
+    rules: {
+        'list[name]': {
+            required: true,
+            minlength: 5
+        }
+    }, messages: {
+        'list[name]': {
+            required: "This field is required !!",
+            minlength: "{0} characters needed !!"
+        }
+    }
+});
 
 
 // create the flash message
