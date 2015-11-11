@@ -1,102 +1,138 @@
-<h3>Update My Profile</h3>
+<h3>Update My Account</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => 'form-horizontal', :id=>'profileEdit' }) do |f| %>
+<ul class="nav nav-tabs padding-16">
+  <li class="active">
+    <a data-toggle="tab" href="#edit-basic">
+      My Info
+    </a>
+  </li>
 
-    <%= devise_error_messages! %>
+  <li>
+    <a data-toggle="tab" href="#edit-avatar">
+      My Avatar
+    </a>
+  </li>
+
+  <li>
+    <a data-toggle="tab" href="#edit-settings">
+      My Settings
+    </a>
+  </li>
+
+  <li>
+    <a data-toggle="tab" href="#edit-password">
+      Password Change
+    </a>
+  </li>
+
+  <li>
+    <a data-toggle="tab" href="#account-cancel">
+      Account Cancellation
+    </a>
+  </li>
+
+</ul>
 
 
-    <ul class="nav nav-tabs padding-16">
-      <li class="active">
-        <a data-toggle="tab" href="#edit-basic">
-          <i class="green icon-edit bigger-125"></i>
-          General
-        </a>
-      </li>
 
-      <li>
-        <a data-toggle="tab" href="#edit-settings">
-          <i class="purple icon-cog bigger-125"></i>
-          Settings
-        </a>
-      </li>
+<div class="tab-content profile-edit-tab-content">
+  <div id="edit-basic" class="tab-pane in active" style="padding-bottom: 3em;">
+    <div class="field">
+      <%= image_tag current_user.avatar.url(:square) %>
+    </div>
 
-      <li>
-        <a data-toggle="tab" href="#edit-password">
-          <i class="blue icon-key bigger-125"></i>
-          Password Change
-        </a>
-      </li>
-    </ul>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, :class => 'form-horizontal', :id => 'profileEdit'}) do |f| %>
 
-    <div class="tab-content profile-edit-tab-content">
-      <div id="edit-basic" class="tab-pane in active">
+        <%= devise_error_messages! %>
+
         <div class="field">
-          <%= image_tag current_user.avatar.url(:square) %>
-        </div>
-
-        <div class="field">
-          <%= f.label :avatar %><br />
-          <%= f.file_field :avatar, :class => 'form-control' %>
-        </div>
-        <br />
-
-        <div class="field">
-          <%= f.label :name %><br />
+          <%= f.label :name %><br/>
           <%= f.text_field :name, autofocus: true, :class => 'form-control input-lg' %>
         </div>
-        <br />
+        <br/>
 
         <div class="field">
-          <%= f.label :email %><br />
+          <%= f.label :email %><br/>
           <%= f.email_field :email, autofocus: false, :class => 'form-control input-lg' %>
         </div>
-        <br />
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-      </div>
-
-      <div id="edit-settings" class="tab-pane">
-        No settings right now.
-      </div>
-
-      <div id="edit-password" class="tab-pane">
-        <div class="field">
-          <%= f.label 'New Password' %> <i style="color:lightgray">(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "off", :class => 'form-control input-lg' %>
-        </div>
-        <br />
+        <br/>
 
         <div class="field">
-          <%= f.label 'New password confirmation' %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control input-lg' %>
+          <%= f.label :current_password %>
+          <i style="color:lightgray">(Required. We need your CURRENT password to confirm any changes.)</i><br/>
+          <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control input-lg', :required => 'required' %>
         </div>
-        <br />
-      </div>
+        <br/>
+
+        <div class="actions">
+          <%= f.submit "Update", :class => "btn btn-success" %>
+        </div>
+    <% end %>
+
+  </div>
+
+
+  <div id="edit-avatar" class="tab-pane">
+    avatar
+  </div>
+
+
+  <div id="edit-settings" class="tab-pane">
+    No settings right now.
+  </div>
+
+
+  <div id="edit-password" class="tab-pane">
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, :class => 'form-horizontal', :id => 'profileEdit'}) do |f| %>
+
+        <%= devise_error_messages! %>
+
+
+        <div class="field">
+      <%= f.label 'New Password' %> <i style="color:lightgray">(leave blank if you don't want to change it)</i><br/>
+      <%= f.password_field :password, autocomplete: "off", :class => 'form-control input-lg' %>
     </div>
-
-
-
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <br/>
 
     <div class="field">
-      <%= f.label :current_password %> <i style="color:lightgray">(Required. We need your CURRENT password to confirm any changes.)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control input-lg', :required=> 'required' %>
+      <%= f.label 'New password confirmation' %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control input-lg' %>
     </div>
-    <br />
+    <br/>
 
-    <div class="actions">
-      <%= f.submit "Update", :class=>"btn btn-success" %>
-    </div>
-<% end %>
+        <div class="field">
+          <%= f.label :current_password %>
+          <i style="color:lightgray">(Required. We need your CURRENT password to confirm any changes.)</i><br/>
+          <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control input-lg', :required => 'required' %>
+        </div>
+        <br/>
 
-<h3 style="margin-top: 2em;">Cancel my account</h3>
+        <div class="actions">
+          <%= f.submit "Update", :class => "btn btn-success" %>
+        </div>
+    <% end %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class=>"btn btn-large btn-danger" %></p>
+  </div>
+
+
+  <div id="account-cancel" class="tab-pane">
+    <h3>Cancel my account</h3>
+
+    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: {confirm: "Are you sure?"}, method: :delete, :class => "btn btn-large btn-danger" %></p>
+
+  </div>
+
+
+</div>
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
 
 
 <script type="text/javascript">
