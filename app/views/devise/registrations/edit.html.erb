@@ -8,12 +8,6 @@
   </li>
 
   <li>
-    <a data-toggle="tab" href="#edit-avatar">
-      My Avatar
-    </a>
-  </li>
-
-  <li>
     <a data-toggle="tab" href="#edit-settings">
       My Settings
     </a>
@@ -38,9 +32,9 @@
 <div class="tab-content profile-edit-tab-content">
   <div id="edit-basic" class="tab-pane in active" style="padding-bottom: 3em;">
 
-    <div class="row">
-      <div class="col-lg-6">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, :class => 'form-horizontal', :id => 'profileEdit'}) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, :class => 'form-horizontal', :id => 'profileEdit'}) do |f| %>
+        <div class="row">
+          <div class="col-lg-6">
 
             <%= devise_error_messages! %>
 
@@ -62,24 +56,31 @@
               <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control input-lg', :required => 'required' %>
             </div>
             <br/>
+          </div>
 
-            <div class="actions">
-              <%= f.submit "Update", :class => "btn btn-success" %>
+          <div class="col-lg-6">
+            <%= image_tag current_user.avatar.url(:medium) %>
+
+            <p>&nbsp;</p>
+
+            <div class="field">
+              <%= f.label 'Upload a better avatar' %><br/>
+              <%= f.file_field :avatar, :class => 'form-control' %>
             </div>
-        <% end %>
-      </div>
+            <br/>
 
-      <div class="col-lg-6">
-        <%= image_tag current_user.avatar.url(:square) %>
-      </div>
+          </div>
 
-    </div>
+        </div>
 
-  </div>
+        <div class="row">
+          <div class="actions">
+            <%= f.submit "Update", :class => "btn btn-success" %>
+          </div>
+        </div>
 
+    <% end %>
 
-  <div id="edit-avatar" class="tab-pane">
-    avatar
   </div>
 
 
