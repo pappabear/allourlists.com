@@ -2,6 +2,8 @@ puts 'Purging old data...'
 
 Item.destroy_all
 List.destroy_all
+
+puts 'Deleting old test users, and deleting the avatars in the S3 bucket...'
 User.destroy_all
 
 puts 'Creating users...'
