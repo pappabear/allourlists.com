@@ -53,6 +53,7 @@
             </div>
 
             <div class="modal-footer">
+              <a class="btn btn-info pull-left" href='/lists/<%= @list.id.to_s %>/copy' data-method='POST'>Copy</a>
               <a class="btn btn-danger" href='/lists/<%= @list.id.to_s %>' data-method='DELETE'>Delete</a>
               <button type="submit" class="btn btn-primary" id="editListFormSubmitButton">Update</button>
             </div>

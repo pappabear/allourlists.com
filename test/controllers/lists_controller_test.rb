@@ -26,10 +26,11 @@ class ListsControllerTest < ActionController::TestCase
   end
 
 
-  #test "should copy a list" do
-  #  get :copy
-  #  assert_response :success
-  #end
+  test "should copy a list" do
+    assert_difference('List.count') do
+      post :copy, id: @list
+    end
+  end
 
 
   test "should create a list" do

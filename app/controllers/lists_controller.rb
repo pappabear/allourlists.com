@@ -45,8 +45,20 @@ class ListsController < ApplicationController
   end
 
 
-  #def copy
-  #end
+  def copy
+    original_list = List.find(params[:id])
+    new_list = List.new
+    new_list.name = original_list.name + ' (copy)'
+    new_list.user_id = current_user.id
+    new_list.save!
+
+    original_list.items.each do |i|
+      new_list.items.create(:name => i.name)
+    end
+
+    flash[:notice] = "List was copied."
+    redirect_to lists_path
+  end
 
 
   private

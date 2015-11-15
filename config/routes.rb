@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   post '/lists/:list_id/items/sort' => 'todos#sort'
   get '/feedback_emails/' => 'feedback_emails#new'
   resources 'feedback_emails', only: [:new, :create]
-
+  post '/lists/:id/copy' => 'lists#copy'
 
   get 'home/index'
   get 'home/privacy'
