@@ -27,6 +27,9 @@
   <%= render :partial => 'items_edit_modals', :locals => {:items => @list.items} %>
 
 
+  <a href="#" data-toggle="modal" data-target="#copyableList">View as copy-and-paste list</a>
+
+
 </section>
 
 <!-- EDIT LIST MODAL -------------------------->
@@ -65,6 +68,31 @@
   </div>
 </div>
 <!-- EDIT LIST MODAL -------------------------->
+
+
+<!-- COPYABLE LIST MODAL -------------------------->
+<div class="modal fade" id="copyableList" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">View This List</h4>
+      </div>
+      <div class="modal-body" style="margin-bottom:-30px;">
+
+        <h1><%= @list.name %></h1>
+        <ul>
+          <% @list.items.each do |i| %>
+            <li><%= i.name %></li>
+          <% end %>
+        </ul>
+
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- COPYABLE LIST MODAL -------------------------->
 
 
 <script type="text/javascript">
