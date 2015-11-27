@@ -5,6 +5,11 @@ console.log("Entering lists/create.js.erb...");
 $("#listGroup").html("<%= escape_javascript(render :partial => 'lists', :locals => {:lists => @lists}) %>");
 
 
+// remove any open modal
+$('#modalAddListForm').modal('hide');
+$('.modal-backdrop').hide();
+
+
 setupPage();
 
 

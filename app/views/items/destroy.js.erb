@@ -6,6 +6,12 @@ $("#listGroup").html("<%= escape_javascript(render :partial => 'lists/items_unco
 $("#listGroupCompleted").html("<%= escape_javascript(render :partial => 'lists/items_completed', :locals => {:items => @list.items.where('is_complete is not null')}) %>");
 $("#modalEditFormsDiv").html("<%= escape_javascript(render partial: 'lists/items_edit_modals', locals: {items: @list.items}) %>");
 
+
+// remove any open modal
+$('.modalEditForms').modal('hide');
+$('.modal-backdrop').hide();
+
+
 setupPage();
 
 

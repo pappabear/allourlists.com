@@ -7,6 +7,11 @@ $("#listGroupCompleted").html("<%= escape_javascript(render :partial => 'lists/i
 $("#modalEditFormsDiv").html("<%= escape_javascript(render partial: 'lists/items_edit_modals', locals: {items: @list.items}) %>");
 
 
+// remove any open modal
+$('#modalAddItemForm').modal('hide');
+$('.modal-backdrop').hide();
+
+
 setupPage();
 
 
