@@ -1,5 +1,6 @@
 puts 'Purging old data...'
 
+Invitation.destroy_all
 Item.destroy_all
 List.destroy_all
 
@@ -18,6 +19,5 @@ l1 = List.create( :name => 'A grocery list', :user_id => u0.id )
 l2 = List.create( :name => 'u0 should not see this list', :user_id => u1.id )
 l0.items.create( :name => 'walk the dog', :is_complete => nil, :position => 1 )
 l0.items.create( :name => 'start a grocery list', :is_complete => true, :position => 1 )
-
 
 puts 'Done.'

@@ -1,0 +1,14 @@
+console.log("Entering invitation/create.js.erb...");
+
+// remove any open modal
+$('#modalInviteForm').modal('hide');
+$('#modalEditListForm').modal('hide');
+$('.modal-backdrop').hide();
+$('body').removeClass('modal-open');
+
+
+setupPage();
+
+
+// create the flash message
+alertify.success("Invitation was sent.");
