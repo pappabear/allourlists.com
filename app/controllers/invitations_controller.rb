@@ -42,7 +42,7 @@ class InvitationsController < ApplicationController
 
       logger.info 'INFO: Sending the email...'
 
-      EmailDispatcher.new_user_invitation(user, @list, @invitation.url, temp_password).deliver_now
+      EmailDispatcher.new_user_invitation(user, @list, @invitation.url, current_user, temp_password).deliver_now
 
       logger.info 'INFO: Email sent.'
 
@@ -65,7 +65,7 @@ class InvitationsController < ApplicationController
 
       logger.info 'INFO: Sending the email...'
 
-      EmailDispatcher.existing_user_invitation(user, @list, @invitation.url).deliver_now
+      EmailDispatcher.existing_user_invitation(user, @list, @invitation.url, current_user).deliver_now
 
       logger.info 'INFO: Email sent.'
 

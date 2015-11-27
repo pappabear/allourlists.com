@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-</head>
-<body>
-<h1>Hi <%= @user.name %></h1>
+<p>Hi <%= @user.name %>!</p>
+
 <p>
-  This is existing_user_invitation.html.erb.
+  <%= @list_owner.name %> has invited you to share in the list called <i><%= @list.name %></i>.
 </p>
-</body>
-</html>
+
+<p>
+  You can access the list <a href="<%= @url %>">here</a>.
+</p>
+
+<p>
+  Thank you for using allourlists.com!
+</p>
