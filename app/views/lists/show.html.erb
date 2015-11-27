@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <h3><b><a href='#' data-toggle="modal" data-target="#modalEditListForm" style="color: #7d8282;"><%= @list.name %></a></b>
+    <h3><b><%= @list.name %> <a href='#' data-toggle="modal" data-target="#modalEditListForm" style="margin-left: 10px;"><i class="fa fa-gear"></i></a></b>
       <ul class="pull-right" style="list-style: none;">
         <li><a href="#" data-toggle="modal" data-target="#modalAddItemForm">NEW ITEM</a></li>
       </ul>
@@ -25,9 +25,6 @@
 
 
   <%= render :partial => 'items_edit_modals', :locals => {:items => @list.items} %>
-
-
-  <a href="#" data-toggle="modal" data-target="#copyableList">View as copy-and-paste list</a>
 
 
 </section>
@@ -56,9 +53,19 @@
             </div>
 
             <div class="modal-footer">
-              <a class="btn btn-info pull-left" href='/lists/<%= @list.id.to_s %>/copy' data-method='POST'>Copy</a>
-              <a class="btn btn-danger" href='/lists/<%= @list.id.to_s %>' data-method='DELETE'>Delete</a>
-              <button type="submit" class="btn btn-primary" id="editListFormSubmitButton">Update</button>
+              <div class="btn-group pull-left">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Actions... <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="pull-left"><a href="#" data-toggle="modal" data-target="#copyableList"><i class="fa fa-font"></i> | View as plain text list</a></li>
+                  <li class="pull-left"><a href='/lists/<%= @list.id.to_s %>/copy' data-method='POST'><i class="fa fa-files-o"></i> | Copy to a new list</a></li>
+                  <li class="pull-left"><a href="#"><i class="fa fa-share-square-o"></i> | Share this list (under constr)</a></li>
+                  <li class="divider"></li>
+                  <li class="pull-left"><a href='/lists/<%= @list.id.to_s %>' data-method='DELETE'><i class="fa fa-trash-o"></i> | Delete this list</a></li>
+                </ul>
+              </div>
+
+
+              <button type="submit" class="btn btn-success" id="editListFormSubmitButton">Update</button>
             </div>
 
         <% end %>
