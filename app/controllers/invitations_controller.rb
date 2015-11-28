@@ -57,6 +57,7 @@ class InvitationsController < ApplicationController
       @invitation.list_id = @list.id
       @invitation.password_is_temp=false
       @invitation.sent_at=Time.now
+      @invitation.accepted_at=Time.now
       @invitation.user_id = user.id
 
       @invitation.save!
@@ -77,6 +78,17 @@ class InvitationsController < ApplicationController
 
 
   def accept
+
+    @list = List.find(params[:list_id])
+    @invitation = Invitation.find(params[:id])
+    invitee = User.find(@invitation.user_id)
+
+    @invitation.accepted_at=Time.now
+    @invitation.save!
+
+    sign_in invitee
+    redirect_to lists_path, notice: 'Thank you for accepting the invitation to join the list.'
+
   end
 
 
