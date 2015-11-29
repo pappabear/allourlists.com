@@ -19,6 +19,13 @@ class InvitationsControllerTest < ActionController::TestCase
   end
 
 
+  test "invite friend" do
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      post :create, email: 'chipirek@nc.rr.com', list_id: @list.id, format: :js, invitation: { user_id: @user.id, sent_at: Time.now, password_is_temp: false }
+    end
+  end
+
+
   test "should accept an invitation" do
     @invitation = invitations(:one)
     get :accept, list_id: @list.id, id: @invitation.id  #, invitation: { user_id: @user.id, sent_at: Time.now, password_is_temp: false }
