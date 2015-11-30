@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   resources :lists do
     resources :items
+    resources :invitations
   end
 
+  get '/lists/:list_id/invitations/accept/:id' => 'invitations#accept'
 
   put '/lists/:list_id/items/mark_complete/:id' => 'items#mark_complete'
   put '/lists/:list_id/items/mark_incomplete/:id' => 'items#mark_incomplete'

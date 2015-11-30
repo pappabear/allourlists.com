@@ -7,12 +7,17 @@ class ListsController < ApplicationController
   def index
     @list = List.new
     @lists = List.where("user_id=?", current_user.id)
+    invites = Invitation.where("user_id=?", current_user.id)
+    invites.each do |i|
+      @lists << List.find(i.list_id)
+    end
   end
 
 
   def show
     @list = List.find(params[:id])
     @item = Item.new
+    @invitation = Invitation.new
   end
 
 

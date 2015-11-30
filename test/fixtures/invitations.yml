@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  list_id: 1
+  password_is_temp: false
+  sent_at: 2015-11-27 15:57:33
+  #accepted_at: 2015-11-27 15:57:33
+
+two:
+  user_id: 1
+  list_id: 1
+  password_is_temp: false
+  sent_at: 2015-11-27 15:57:33
+  accepted_at: 2015-11-27 15:57:33

@@ -58,12 +58,11 @@
                 <ul class="dropdown-menu" role="menu">
                   <li class="pull-left"><a href="#" data-toggle="modal" data-target="#copyableList"><i class="fa fa-font"></i> | View as plain text list</a></li>
                   <li class="pull-left"><a href='/lists/<%= @list.id.to_s %>/copy' data-method='POST'><i class="fa fa-files-o"></i> | Copy to a new list</a></li>
-                  <li class="pull-left"><a href="#"><i class="fa fa-share-square-o"></i> | Share this list (under constr)</a></li>
+                  <li class="pull-left"><a href="#" data-toggle="modal" data-target="#modalInviteForm"><i class="fa fa-share-square-o"></i> | Share this list</a></li>
                   <li class="divider"></li>
                   <li class="pull-left"><a href='/lists/<%= @list.id.to_s %>' data-method='DELETE'><i class="fa fa-trash-o"></i> | Delete this list</a></li>
                 </ul>
               </div>
-
 
               <button type="submit" class="btn btn-success" id="editListFormSubmitButton">Update</button>
             </div>
@@ -75,6 +74,41 @@
   </div>
 </div>
 <!-- EDIT LIST MODAL -------------------------->
+
+
+<!-- INVITE SOMEONE ELSE MODAL -------------------------->
+<div class="modal fade" id="modalInviteForm" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Share this List - Invite Someone</h4>
+      </div>
+      <div class="modal-body" style="margin-bottom:-30px;">
+
+        <%= form_for( [@list, @invitation], remote: true, format: :js, :authenticity_token => true, html: {class: 'form-horizontal'}) do |f| %>
+
+            <input type="hidden" name="list_id" value="<%= @list.id %>" />
+
+            <div class="form-group">
+              <label for="item_name" class="col-sm-2 control-label">Email</label>
+
+              <div class="col-sm-10">
+                <input type="email" class="form-control input-lg" id="email" name="email" required >
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="modalInviteFormSubmitButton">Invite</button>
+            </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- INVITE SOMEONE ELSE MODAL -------------------------->
 
 
 <!-- COPYABLE LIST MODAL -------------------------->
