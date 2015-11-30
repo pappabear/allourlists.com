@@ -1,4 +1,5 @@
 require 'test_helper'
+include Devise::TestHelpers
 
 class InvitationsControllerTest < ActionController::TestCase
 

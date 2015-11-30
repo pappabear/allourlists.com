@@ -8,7 +8,7 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  include Devise::TestHelpers
+  #include Devise::TestHelpers  # commenting this out so that integration tests can run too
 
   # Add more helper methods to be used by all tests here...
 end

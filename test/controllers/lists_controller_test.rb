@@ -1,5 +1,5 @@
 require 'test_helper'
-
+include Devise::TestHelpers
 
 class ListsControllerTest < ActionController::TestCase
 
