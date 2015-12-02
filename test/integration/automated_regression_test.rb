@@ -135,6 +135,96 @@ class AutomatedRegressionTest < ActionDispatch::IntegrationTest
     end
 
 
+    test 'create new item' do
+
+      #-- login
+      get '/users/sign_in'
+      assert_response :success
+
+      post_via_redirect '/users/sign_in', 'user[email]' => 'chip.irek@gmail.com', 'user[password]' => 'lollip0p'
+      assert_equal '/', path
+
+      #-- get the list
+      get '/lists/1'
+      assert_response :success
+      assert assigns(:list)
+
+      post '/lists/1/items', 'item[name]' => 'Some test item', :format => 'js'
+
+      # p 'Verifying...'
+      i = List.find(1).items.last
+      #assert_equal '/lists/' + p.id.to_s, path
+      assert_equal i.name, 'Some test item'
+
+    end
+
+
+    test 'update an item' do
+
+      #-- login
+      get '/users/sign_in'
+      assert_response :success
+
+      post_via_redirect '/users/sign_in', 'user[email]' => 'chip.irek@gmail.com', 'user[password]' => 'lollip0p'
+      assert_equal '/', path
+
+      #-- get the last list created
+      i = List.find(1).items.last
+      t = i.name += ' -e'
+
+      put '/lists/1/items/' + i.id.to_s, 'item[name]' => t, :format => 'js'
+
+      i = List.find(1).items.last
+      assert_equal i.name, t
+
+    end
+
+
+    test 'fail adding an item due to missing field' do
+
+      #-- login
+      get '/users/sign_in'
+      assert_response :success
+
+      post_via_redirect '/users/sign_in', 'user[email]' => 'chip.irek@gmail.com', 'user[password]' => 'lollip0p'
+      assert_equal '/', path
+
+      #-- get the last list created
+      l = List.last
+
+      test_failed = false
+
+      begin
+        post '/lists/' + l.id.to_s + '/items', 'item[name]' => '', :format => 'js'
+      rescue => e
+        assert_equal("Validation failed: Name can't be blank", e.message)
+        test_failed = true
+      end
+
+      assert_equal(test_failed, true)
+
+    end
+
+
+    test 'delete an item' do
+
+      #-- login
+      get '/users/sign_in'
+      assert_response :success
+
+      post_via_redirect '/users/sign_in', 'user[email]' => 'chip.irek@gmail.com', 'user[password]' => 'lollip0p'
+      assert_equal '/', path
+
+      count_before_delete = List.find(1).items.count
+      i = List.find(1).items.last
+
+      delete '/lists/1/items/' + i.id.to_s, :format => 'js'
+
+      count_after_delete = List.find(1).items.count
+      assert_not_equal count_before_delete, count_after_delete
+
+    end
+
 end
 
 
