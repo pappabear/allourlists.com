@@ -225,6 +225,45 @@ class AutomatedRegressionTest < ActionDispatch::IntegrationTest
 
     end
 
+
+    test 'can only access my own lists' do
+
+      #-- login
+      get '/users/sign_in'
+      assert_response :success
+
+      post_via_redirect '/users/sign_in', 'user[email]' => 'chip.irek@gmail.com', 'user[password]' => 'lollip0p'
+      assert_equal '/', path
+
+      #-- get the list
+      get '/lists'
+      assert_response :success
+      assigns(:lists).each do |l|
+        assert_equal(l.user_id, 1)
+      end
+      #assert_equal 1, assigns(:lists).length
+
+    end
+
+
+    test 'registration OK' do
+      get '/users/sign_up'
+      assert_response :success
+
+      post_via_redirect '/users', 'user[name]' => 'New User','user[email]' => 'new_user@gmail.com', 'user[password]' => 'lollip0p', 'user[password_confirmation]' => 'lollip0p'
+      assert_equal '/', path
+    end
+
+
+    test 'registration fails with missing fields' do
+      get '/users/sign_up'
+      assert_response :success
+
+      post_via_redirect '/users', 'user[name]' => 'New User3', 'user[password]' => 'lollip0p'  # no name field!!
+      assert_equal '/users', path
+    end
+
+
 end
 
 
