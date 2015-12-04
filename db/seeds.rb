@@ -20,4 +20,29 @@ l2 = List.create( :name => 'u0 should not see this list', :user_id => u1.id )
 l0.items.create( :name => 'walk the dog', :is_complete => nil, :position => 1 )
 l0.items.create( :name => 'start a grocery list', :is_complete => true, :position => 1 )
 
+# --- creating data for load testing
+
+puts 'Creating data for load testing...'
+
+100.times do
+  User.create( :name => Faker::Name.name, :email => Faker::Internet.email, :password => Faker::Address.city )
+end
+
+User.all.each do |u|
+  u.avatar = File.open(Dir.glob(File.join(Rails.root, 'public/sample_avatars', '*')).sample)
+  u.save!
+end
+
+User.all.each do |u|
+  10.times do
+    List.create(:name=> Faker::Lorem.sentence(3, true, 4), :user_id => u.id)
+  end
+end
+
+List.all.each do |l|
+  15.times do
+    l.items.create(:name => Faker::Lorem.sentence, :is_complete => nil, :position => 1)
+  end
+end
+
 puts 'Done.'

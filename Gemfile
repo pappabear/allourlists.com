@@ -12,6 +12,7 @@ gem 'mail_form', '>= 1.3.0'
 gem 'simple_form'
 gem 'paperclip'
 gem 'aws-sdk-v1'
+gem 'faker'
 
 group :development do
   gem 'taps'
