@@ -22,6 +22,7 @@ l0.items.create( :name => 'start a grocery list', :is_complete => true, :positio
 
 # --- creating data for load testing
 
+=begin
 puts 'Creating data for load testing...'
 
 100.times do
@@ -44,5 +45,6 @@ List.all.each do |l|
     l.items.create(:name => Faker::Lorem.sentence, :is_complete => nil, :position => 1)
   end
 end
+=end
 
 puts 'Done.'
